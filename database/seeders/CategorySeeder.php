@@ -16,10 +16,12 @@ class CategorySeeder extends Seeder
     public function run()
     {
         Category::create([
-            'name' => 'Electronik'
+            'name' => 'Electronik',
+            'slug' => 'electronik',
         ]);
         Category::create([
-            'name' => 'Kursi Gaming'
+            'name' => 'Kursi Gaming',
+            'slug' => 'kursi-gaming',
         ]);
     }
 }

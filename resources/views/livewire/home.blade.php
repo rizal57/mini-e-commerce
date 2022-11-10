@@ -68,23 +68,23 @@
 
     <div class="lg:px-8 lg:my-4 mx-auto">
         {{-- Carousel start --}}
-        <div class="mb-8">
+        <div class="mb-4">
             <x-carousel>
-                <div id="slide1" class="carousel-item relative w-full h-40 lg:h-auto bg-cover">
-                    <img src="https://source.unsplash.com/800x200?programming" class="w-full object-cover" />
+                <div id="slide1" class="carousel-item relative w-full h-40 lg:h-[370px] bg-cover">
+                    <img src="{{ asset('images/banner4.jpg') }}" class="w-full object-cover" />
                 </div>
-                <div id="slide1" class="carousel-item relative w-full h-40 lg:h-auto bg-cover">
-                    <img src="https://source.unsplash.com/800x200?programming" class="w-full object-cover" />
+                <div id="slide1" class="carousel-item relative w-full h-40 lg:h-[370px] bg-cover">
+                    <img src="{{ asset('images/banner2.jpg') }}" class="w-full object-cover" />
                 </div>
-                <div id="slide1" class="carousel-item relative w-full h-40 lg:h-auto bg-cover">
-                    <img src="https://source.unsplash.com/800x200?programming" class="w-full object-cover" />
+                <div id="slide1" class="carousel-item relative w-full h-40 lg:h-[370px] bg-cover">
+                    <img src="{{ asset('images/banner1.jpg') }}" class="w-full object-cover" />
                 </div>
             </x-carousel>
         </div>
         {{-- Carousel start --}}
 
         {{-- card start --}}
-        <div class="flex flex-wrap justify-center items-center gap-4">
+        <div class="flex flex-wrap justify-between items-center gap-4">
             <div class="card bg-white text-slate-500 shadow-md w-full lg:w-auto text-base">
                 <div class="card-body items-center text-center">
                     <span class="text-slate-700">
@@ -154,103 +154,42 @@
                 </div>
             </div>
 
+            {{-- card product start --}}
             <div class="carousel-wrapper">
                 <div class="owl-carousel owl-theme" id="product-card">
-                    <a href="{{ route('product.detail') }}">
-                        <div class="item">
-                            <div class="rounded-lg overflow-hidden bg-white shadow-lg">
-                                <figure class="overflow-hidden rounded-t-lg h-60">
-                                    <img src="https://placeimg.com/400/405/arch" alt="Shoes" />
-                                </figure>
-                                <div class="text-sm text-slate-800 px-2 pb-2">
-                                    <h1>MONITOR INFORCE 15.6 LED 1560MW HDMI VGA...</h1>
-                                    <h2 class="text-slate-900 font-bold text-lg">Rp. 1.300.000</h2>
-                                    <x-cashback>Cashback</x-cashback>
-                                    <div class="mt-2 flex items-center gap-2">
-                                        <div class="text-teal-500">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                                            </svg>
+                    @foreach ($products as $product)
+                        <a href="{{ route('product.detail', $product) }}">
+                            <div class="item">
+                                <div class="rounded-lg overflow-hidden bg-white shadow-lg">
+                                    <figure class="overflow-hidden rounded-t-lg h-60">
+                                        <img src="{{ asset('images/' . $product->gambar) }}" alt="Shoes" />
+                                    </figure>
+                                    <div class="text-sm text-slate-800 px-2 pb-2">
+                                        <h1>{{ Str::limit($product->name, 50, '...') }}</h1>
+                                        <h2 class="text-slate-900 font-bold text-lg">Rp. {{ number_format($product->price) }}</h2>
+                                        <div class="flex flex-col gap-0.5">
+                                            @if ($product->diskon)
+                                                <x-diskon>{{ $product->diskon }}%</x-diskon>
+                                            @endif
                                         </div>
-                                        <div>
-                                            <span class="text-base text-slate-800">Kediri</span>
+                                        <div class="mt-2 flex items-center gap-2">
+                                            <div class="text-teal-500">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                                    <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                                                </svg>
+                                            </div>
+                                            <div>
+                                                <span class="text-base text-slate-800">Kediri</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-
-                    <div class="item">
-                        <div class="rounded-lg overflow-hidden bg-white shadow-lg">
-                            <figure class="overflow-hidden rounded-t-lg h-60">
-                                <img src="https://placeimg.com/400/405/arch" alt="Shoes" />
-                            </figure>
-                            <div class="text-sm text-slate-800 px-2 pb-2">
-                                <h1>MONITOR INFORCE 15.6 LED 1560MW HDMI VGA...</h1>
-                                <h2 class="text-slate-900 font-bold text-lg">Rp. 1.300.000</h2>
-                                <x-cashback>Cashback</x-cashback>
-                                <div class="mt-2 flex items-center gap-2">
-                                    <div class="text-teal-500">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <span class="text-base text-slate-800">Kediri</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="rounded-lg overflow-hidden bg-white shadow-lg">
-                            <figure class="overflow-hidden rounded-t-lg h-60">
-                                <img src="https://placeimg.com/400/405/arch" alt="Shoes" />
-                            </figure>
-                            <div class="text-sm text-slate-800 px-2 pb-2">
-                                <h1>MONITOR INFORCE 15.6 LED 1560MW HDMI VGA...</h1>
-                                <h2 class="text-slate-900 font-bold text-lg">Rp. 1.300.000</h2>
-                                <x-cashback>Cashback</x-cashback>
-                                <div class="mt-2 flex items-center gap-2">
-                                    <div class="text-teal-500">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <span class="text-base text-slate-800">Kediri</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="rounded-lg overflow-hidden bg-white shadow-lg">
-                            <figure class="overflow-hidden rounded-t-lg h-60">
-                                <img src="https://placeimg.com/400/405/arch" alt="Shoes" />
-                            </figure>
-                            <div class="text-sm text-slate-800 px-2 pb-2">
-                                <h1>MONITOR INFORCE 15.6 LED 1560MW HDMI VGA...</h1>
-                                <h2 class="text-slate-900 font-bold text-lg">Rp. 1.300.000</h2>
-                                <x-cashback>Cashback</x-cashback>
-                                <div class="mt-2 flex items-center gap-2">
-                                    <div class="text-teal-500">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <span class="text-base text-slate-800">Kediri</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </a>
+                    @endforeach
                 </div>
             </div>
+            {{-- card product end --}}
         </section>
         {{-- products end --}}
 
@@ -258,10 +197,10 @@
         <section id="banner" class="banner mt-4">
             <div class="flex gap-3 items-center justify-between">
                 <div class="overflow-hidden rounded-lg bg-cover">
-                    <img src="https://source.unsplash.com/600x300?webdesign" alt="" class="object-cover">
+                    <img src="{{ asset('images/banner1.jpg') }}" alt="" class="object-cover">
                 </div>
                 <div class="overflow-hidden rounded-lg bg-cover">
-                    <img src="https://source.unsplash.com/600x300?fashion" alt="" class="object-cover">
+                    <img src="{{ asset('images/banner4.jpg') }}" alt="" class="object-cover">
                 </div>
             </div>
         </section>
@@ -280,7 +219,7 @@
                     <div class="item">
                         <div class="rounded-lg overflow-hidden bg-white shadow-lg">
                             <figure class="overflow-hidden rounded-t-lg h-60">
-                                <img src="https://placeimg.com/400/405/arch" alt="Shoes" />
+                                <img src="{{ asset('images/monitor.jpg') }}" alt="Shoes" />
                             </figure>
                             <div class="text-sm text-slate-800 px-2 pb-2">
                                 <h1>MONITOR INFORCE 15.6 LED 1560MW HDMI VGA...</h1>
@@ -302,7 +241,7 @@
                     <div class="item">
                         <div class="rounded-lg overflow-hidden bg-white shadow-lg">
                             <figure class="overflow-hidden rounded-t-lg h-60">
-                                <img src="https://placeimg.com/400/405/arch" alt="Shoes" />
+                                <img src="{{ asset('images/monitor.jpg') }}" alt="Shoes" />
                             </figure>
                             <div class="text-sm text-slate-800 px-2 pb-2">
                                 <h1>MONITOR INFORCE 15.6 LED 1560MW HDMI VGA...</h1>
@@ -324,7 +263,7 @@
                     <div class="item">
                         <div class="rounded-lg overflow-hidden bg-white shadow-lg">
                             <figure class="overflow-hidden rounded-t-lg h-60">
-                                <img src="https://placeimg.com/400/405/arch" alt="Shoes" />
+                                <img src="{{ asset('images/monitor.jpg') }}" alt="Shoes" />
                             </figure>
                             <div class="text-sm text-slate-800 px-2 pb-2">
                                 <h1>MONITOR INFORCE 15.6 LED 1560MW HDMI VGA...</h1>
@@ -346,7 +285,7 @@
                     <div class="item">
                         <div class="rounded-lg overflow-hidden bg-white shadow-lg">
                             <figure class="overflow-hidden rounded-t-lg h-60">
-                                <img src="https://placeimg.com/400/405/arch" alt="Shoes" />
+                                <img src="{{ asset('images/monitor.jpg') }}" alt="Shoes" />
                             </figure>
                             <div class="text-sm text-slate-800 px-2 pb-2">
                                 <h1>MONITOR INFORCE 15.6 LED 1560MW HDMI VGA...</h1>

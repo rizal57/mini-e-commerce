@@ -18,6 +18,7 @@ class ProductSeeder extends Seeder
         Product::create([
             'category_id' => 2,
             'name' => 'ONEX GX3 Premium Quality Gaming Chair Kursi - Hitam',
+            'slug' => 'onex-gx3-premium-quality-gaming-chair-kursi-hitam',
             'merk' => 'ONEX',
             'price' => 2349000,
             'stock' => 68,
@@ -32,6 +33,7 @@ class ProductSeeder extends Seeder
         Product::create([
             'category_id' => 1,
             'name' => 'Mouse Alcatroz Airmouse V Wireless 1200CPI - Alcatroz Airmouse 5 - MINT',
+            'slug' => 'mouse-alcatroz-airmouse-v-wireless 1200cpi-alcatroz-airmouse-5-mint',
             'merk' => 'Alcatroz Airmouse',
             'price' => 35000,
             'stock' => 78,
@@ -46,6 +48,7 @@ class ProductSeeder extends Seeder
         Product::create([
             'category_id' => 1,
             'name' => 'Mi 23.8 Desktop Monitor 1C 75Hz 1080p Full HD - Monitor 24 inch Xiaomi',
+            'slug' => 'mi-23.8-desktop-monitor-1c-7hz-1080p-full-hd-monitor-24-inch-xiaomi',
             'merk' => 'MI',
             'price' => 1799000,
             'stock' => 11,

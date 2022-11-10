@@ -1,10 +1,12 @@
 <div class="container px-4 mx-auto mt-8">
     <div class="card lg:card-side bg-white rounded-md justify-between gap-4">
-        <figure>
-            <img src="https://placeimg.com/400/400/arch" alt="Album" class="rounded-md"/>
-        </figure>
+        <div class="relative">
+            <figure>
+                <img src="{{ asset('images/' . $product->gambar) }}" alt="Album" class="w-[400px] rounded-md top-0 left-0"/>
+            </figure>
+        </div>
         <div class="lg:max-w-md">
-            <h2 class="text-sltae-800 font-bold text-2xl">MONITOR INFORCE 15.6 LED 1560MW HDMI VGA...</h2>
+            <h2 class="text-sltae-800 font-bold text-2xl">{{ $product->name }}</h2>
             <div class="star-rating flex items-center gap-2 mb-3">
                 <p class="text-slate-500 text-base">Terjual <span class="text-slate-800 font-semibold text-base">5 rb+ .</span></p>
                 <span>
@@ -17,24 +19,26 @@
                 </span>
             </div>
             <div class="price">
-                <h3 class="text-slate-800 font-bold text-3xl mb-1">Rp. 1.300.000</h3>
-                <x-cashback>
-                    Cashback
-                </x-cashback>
+                <h3 class="text-slate-800 font-bold text-3xl mb-1">Rp. {{ number_format($product->price) }}</h3>
+                @if ($product->diskon)
+                    <x-diskon>
+                        {{ $product->diskon }}%
+                    </x-diskon>
+                @endif
             </div>
 
             <div class="mt-4 border-b py-1 mb-2">
                 <h2 class="text-teal-500 text-base font-semibold">Detail</h2>
             </div>
             <div class="text-slate-500 text-sm">
-                <p>Kondisi: <span class="text-slate-900 font-semibold">Baru</span></p>
-                <p>Berat Satuan: <span class="text-slate-900 font-semibold">31 kg</span></p>
-                <p>Kategori: <span class="text-teal-500 font-semibold">Kursi Gaming</span></p>
+                <p>Kondisi: <span class="text-slate-900 font-semibold">{{ $product->condition }}</span></p>
+                <p>Berat Satuan: <span class="text-slate-900 font-semibold">{{ $product->weight }} kg</span></p>
+                <p>Kategori: <span class="text-teal-500 font-semibold">{{ $product->category->name }}</span></p>
                 <p>Etalase: <span class="text-teal-500 font-semibold">Gaming Chair</span></p>
             </div>
             <div class="text-slate-700 max-w-md text-base mt-3">
                 <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae, laudantium ad eaque quibusdam debitis, maxime in vel dicta pariatur dolore doloremque culpa dolorum eum vitae quas ullam, accusantium tempora nostrum.
+                    {!! $product->description !!}
                 </p>
             </div>
         </div>

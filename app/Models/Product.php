@@ -18,6 +18,7 @@ class Product extends Model
         'diskon',
         'condition',
         'description',
+        'gambar',
     ];
 
     public function category() {

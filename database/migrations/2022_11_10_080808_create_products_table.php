@@ -24,6 +24,7 @@ return new class extends Migration
             $table->float('diskon');
             $table->string('condition');
             $table->text('description');
+            $table->string('gambar');
             $table->timestamps();
         });
     }

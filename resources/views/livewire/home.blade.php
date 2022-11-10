@@ -156,28 +156,30 @@
 
             <div class="carousel-wrapper">
                 <div class="owl-carousel owl-theme" id="product-card">
-                    <div class="item">
-                        <div class="rounded-lg overflow-hidden bg-white shadow-lg">
-                            <figure class="overflow-hidden rounded-t-lg h-60">
-                                <img src="https://placeimg.com/400/405/arch" alt="Shoes" />
-                            </figure>
-                            <div class="text-sm text-slate-800 px-2 pb-2">
-                                <h1>MONITOR INFORCE 15.6 LED 1560MW HDMI VGA...</h1>
-                                <h2 class="text-slate-900 font-bold text-lg">Rp. 1.300.000</h2>
-                                <x-cashback>Cashback</x-cashback>
-                                <div class="mt-2 flex items-center gap-2">
-                                    <div class="text-teal-500">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <span class="text-base text-slate-800">Kediri</span>
+                    <a href="{{ route('product.detail') }}">
+                        <div class="item">
+                            <div class="rounded-lg overflow-hidden bg-white shadow-lg">
+                                <figure class="overflow-hidden rounded-t-lg h-60">
+                                    <img src="https://placeimg.com/400/405/arch" alt="Shoes" />
+                                </figure>
+                                <div class="text-sm text-slate-800 px-2 pb-2">
+                                    <h1>MONITOR INFORCE 15.6 LED 1560MW HDMI VGA...</h1>
+                                    <h2 class="text-slate-900 font-bold text-lg">Rp. 1.300.000</h2>
+                                    <x-cashback>Cashback</x-cashback>
+                                    <div class="mt-2 flex items-center gap-2">
+                                        <div class="text-teal-500">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <span class="text-base text-slate-800">Kediri</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
 
                     <div class="item">
                         <div class="rounded-lg overflow-hidden bg-white shadow-lg">

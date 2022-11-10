@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->index();
             $table->string('name');
+            $table->string('slug');
             $table->string('merk')->nullable();
             $table->integer('price');
             $table->integer('stock');

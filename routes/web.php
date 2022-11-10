@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\Home;
+use App\Http\Livewire\ProductDetail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', Home::class)->name('home');
+Route::get('product-detail', ProductDetail::class)->name('product.detail');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -5,19 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DetailPurchase extends Model
+class Cart extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'purchase_id',
+        'user_id',
         'product_id',
-        'purchase_price',
-        'amount',
-        'total_price',
+        'total_item',
     ];
 
-    public function purchase() {
-        return $this->belongsTo(Purchase::class);
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 
     public function product() {

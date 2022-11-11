@@ -102,7 +102,7 @@
                                                     @endforeach
                                                 </div>
                                                 <div class="w-full text-end">
-                                                    <a href="#" class="font-semibold text-sm text-teal-500">View cart</a>
+                                                    <a href="{{ route('cart') }}" class="font-semibold text-sm text-teal-500">View cart</a>
                                                 </div>
                                             </div>
                                         </div>

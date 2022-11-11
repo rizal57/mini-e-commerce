@@ -18,6 +18,9 @@ switch ($width) {
     case '48':
         $width = 'w-48';
         break;
+    case '500':
+        $width = 'w-[500px]';
+        break;
 }
 @endphp
 

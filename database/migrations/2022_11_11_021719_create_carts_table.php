@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('product_id');
             $table->integer('total_item');
             $table->string('courier_id')->nullable();
+            $table->integer('total_price');
             $table->timestamps();
         });
     }

@@ -82,6 +82,7 @@
                             <p class="text-slate-700 text-base">Subtotal</p>
                         </div>
                         <div>
+                            <input type="hidden" wire:model="total_price">
                             <p class="text-slate-800 font-bold text-lg">
                                 @if ($total_price == 0)
                                     Rp. {{ number_format($product->price) }}

@@ -94,10 +94,24 @@
                     </div>
                     {{-- button --}}
                     <div class="mt-6">
-                        <button wire:click="addToCart" class="bg-teal-500 text-white font-semibold py-2 px-4 rounded-md w-full">+ Keranjang</button>
+                        <button wire:click="addToCart" id="addToCart" class="bg-teal-500 text-white font-semibold py-2 px-4 rounded-md w-full">+ Keranjang</button>
                     </div>
                 </div>
             {{-- </form> --}}
             </div>
         </div>
 </div>
+<script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $('#addToCart').on('click', function() {
+        Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Ditambahkan kekeranjang',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    })
+
+</script>

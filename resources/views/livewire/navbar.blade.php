@@ -82,7 +82,12 @@
                                     <x-slot name="content">
                                         <div tabindex="0" class="mt-2 p-0 card card-compact dropdown-content overflow-auto lg:h-80">
                                             <div class="px-3 flex flex-col gap-2 pb-2">
-                                                <span class="font-semibold text-base">{{ count($cart) }} Items</span>
+                                                <div class="flex items-center">
+                                                    <span class="font-semibold text-base w-full">{{ count($cart) }} Items</span>
+                                                    <div class="w-full text-end">
+                                                        <a href="{{ route('cart') }}" class="font-semibold text-sm text-teal-500">View cart</a>
+                                                    </div>
+                                                </div>
                                                 <div>
                                                     @foreach ($cart as $item)
                                                         <div class="flex justify-between items-center mb-2 gap-3 p-2 shadow-md rounded-md">
@@ -100,9 +105,6 @@
                                                             </div>
                                                         </div>
                                                     @endforeach
-                                                </div>
-                                                <div class="w-full text-end">
-                                                    <a href="{{ route('cart') }}" class="font-semibold text-sm text-teal-500">View cart</a>
                                                 </div>
                                             </div>
                                         </div>

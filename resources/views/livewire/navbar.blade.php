@@ -82,7 +82,12 @@
                                     <x-slot name="content">
                                         <div tabindex="0" class="mt-2 p-0 card card-compact dropdown-content overflow-auto lg:h-80">
                                             <div class="px-3 flex flex-col gap-2 pb-2">
-                                                <span class="font-semibold text-base">{{ count($cart) }} Items</span>
+                                                <div class="flex items-center">
+                                                    <span class="font-semibold text-base w-full">{{ count($cart) }} Items</span>
+                                                    <div class="w-full text-end">
+                                                        <a href="{{ route('cart') }}" class="font-semibold text-sm text-teal-500">View cart</a>
+                                                    </div>
+                                                </div>
                                                 <div>
                                                     @foreach ($cart as $item)
                                                         <div class="flex justify-between items-center mb-2 gap-3 p-2 shadow-md rounded-md">
@@ -100,9 +105,6 @@
                                                             </div>
                                                         </div>
                                                     @endforeach
-                                                </div>
-                                                <div class="w-full text-end">
-                                                    <a href="{{ route('cart') }}" class="font-semibold text-sm text-teal-500">View cart</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -123,15 +125,6 @@
                                             </div>
                                         </label>
                                     </div>
-                                    {{-- <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                                        <div>{{ Auth::user()->name }}</div>
-
-                                        <div class="ml-1">
-                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                            </svg>
-                                        </div>
-                                    </button> --}}
                                 </x-slot>
 
                                 <x-slot name="content">
@@ -192,16 +185,11 @@
             </div>
             {{-- kategori --}}
             <div class="flex items-center gap-4 w-full text-slate-500 pb-2 sm:text-sm overflow-x-auto">
-                <div>
-                    <a href="#">Kategori 1</a>
-                </div>
-                <div>kategori</div>
-                <div>kategori</div>
-                <div>kategori</div>
-                <div>kategori</div>
-                <div>kategori</div>
-                <div>kategori</div>
-                <div>kategori</div>
+                @foreach ($categories as $category)
+                    <div>
+                        <a href="#" class="hover:text-teal-500 transition-all duration-300">{{ $category->name }}</a>
+                    </div>
+                @endforeach
             </div>
 
             <!-- Responsive Navigation Menu -->

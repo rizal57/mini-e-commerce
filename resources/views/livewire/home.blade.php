@@ -145,10 +145,11 @@
                 <div class="kategori">
                     <div>
                         <ul class="flex gap-4 items-center">
-                            <li>Kategori</li>
-                            <li>Kategori</li>
-                            <li>Kategori</li>
-                            <li>Kategori</li>
+                            @foreach ($categories as $category)
+                                <li class="text-slate-500 hover:text-teal-500 transition-all duration-300">
+                                    <a href="#">{{ $category->name }}</a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>

@@ -13,4 +13,9 @@ class Cart extends Component
         $this->carts = ModelsCart::where('user_id', auth()->user()->id)->orderBy('updated_at', 'desc')->get();
         return view('livewire.cart');
     }
+
+    public function deleteCart($id) {
+        $cart = ModelsCart::find($id);
+        $cart->delete();
+    }
 }

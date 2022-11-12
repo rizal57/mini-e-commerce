@@ -26,14 +26,14 @@ class ProductDetail extends Component
             $this->total_price = $this->product->price;
         }
 
-        if (Cart::where('product_id', $this->product->id)->where('user_id', auth()->user()->id)->exists()) {
-            $cart_update = Cart::where('user_id', auth()->user()->id)->where('product_id', $this->product->id)->first();
-            $cart_update->total_item = $this->total_item;
-            $cart_update->courier_id = $this->courier_id;
-            $cart_update->total_price = $this->total_price;
-            $cart_update->update();
-        } else {
-            if(auth()->user()) {
+        if(auth()->user()) {
+            if (Cart::where('product_id', $this->product->id)->where('user_id', auth()->user()->id)->exists()) {
+                $cart_update = Cart::where('user_id', auth()->user()->id)->where('product_id', $this->product->id)->first();
+                $cart_update->total_item = $this->total_item;
+                $cart_update->courier_id = $this->courier_id;
+                $cart_update->total_price = $this->total_price;
+                $cart_update->update();
+            } else {
                 $cart = new Cart();
                 $cart->user_id = auth()->user()->id;
                 $cart->product_id = $this->product->id;
@@ -41,11 +41,12 @@ class ProductDetail extends Component
                 $cart->courier_id = $this->courier_id;
                 $cart->total_price = $this->total_price;
                 $cart->save();
-            } else {
-                return redirect(route('login'));
             }
+        } else {
+            return redirect()->to(route('login'));
         }
         $this->emit('cartAdded');
+        session()->flash('success', 'Ditambahkan kekeranjang');
     }
 
     public function change_total_itam() {

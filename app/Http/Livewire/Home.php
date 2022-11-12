@@ -8,11 +8,14 @@ use Livewire\Component;
 
 class Home extends Component
 {
-    public $products, $categories;
+    public $products, $new_products, $categories;
     public function render()
     {
         $this->categories = Category::all();
-        $this->products = Product::latest()->get();
+
+        $this->products = Product::inRandomOrder()->get();
+        $this->new_products = Product::latest()->get();
+
         return view('livewire.home');
     }
 }

@@ -17,5 +17,7 @@ class Cart extends Component
     public function deleteCart($id) {
         $cart = ModelsCart::find($id);
         $cart->delete();
+
+        $this->emit('deleteProductCart');
     }
 }

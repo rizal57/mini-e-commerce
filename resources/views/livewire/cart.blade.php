@@ -1,3 +1,11 @@
+@push('style')
+    @livewireStyles
+@endpush
+
+@push('script')
+    @livewireScripts
+@endpush
+
 <div class="container px-24 mx-auto py-8">
     <div class="mb-3">
         <h1 class="text-slate-800 font-semibold text-xl">Keranjang</h1>

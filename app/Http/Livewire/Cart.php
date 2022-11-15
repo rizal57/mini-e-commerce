@@ -64,7 +64,9 @@ class Cart extends Component
     public function update($cartId)
     {
         $cart = ModelsCart::find($cartId);
+        $product = Product::where('id', $cart->product_id)->first();
         $cart->total_item = $this->total_item;
+        $cart->total_price = $product->price * $this->total_item;
         $cart->save();
         $this->cart_id = 0;
     }

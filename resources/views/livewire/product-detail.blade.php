@@ -1,3 +1,13 @@
+@push('style')
+    @livewireStyles
+@endpush
+
+@push('script')
+    @livewireScripts
+    <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@endpush
+
 <div class="container px-4 mx-auto mt-8">
     @if (session()->has('success'))
         <div class="py-2 px-4 alert rounded-md mb-4 lg:-mt-4 lg:max-w-md mx-auto bg-teal-500 text-white font-semibold shadow-lg">
@@ -113,5 +123,3 @@
             </div>
         </div>
 </div>
-<script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

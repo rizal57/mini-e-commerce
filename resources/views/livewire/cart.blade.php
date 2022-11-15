@@ -20,6 +20,14 @@
 @endpush
 
 <div class="container px-24 mx-auto py-8">
+    @if (session()->has('failed'))
+        <div class="flex items-center justify-center py-2 px-4 alert rounded-md mb-4 lg:-mt-4 lg:max-w-md mx-auto bg-rose-500 text-white font-semibold shadow-lg">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>{{ session('failed') }}</span>
+            </div>
+        </div>
+    @endif
     <div class="mb-3">
         <h1 class="text-slate-800 font-semibold text-xl">Keranjang</h1>
     </div>
@@ -123,7 +131,7 @@
                         @endif
                     </div>
                     <div>
-                        <button class="w-full bg-teal-500 text-white font-semibold hover:bg-teal-600 transition-all duration-300 rounded-lg py-2 px-4">Beli</button>
+                        <button wire:click="beli" class="w-full bg-teal-500 text-white font-semibold hover:bg-teal-600 transition-all duration-300 rounded-lg py-2 px-4">Beli ({{ $total_item_selected ?? '' }})</button>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Checkout;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductDetail as ControllersProductDetail;
 use App\Http\Controllers\ProductsController;
@@ -25,6 +26,7 @@ Route::get('product-detail/{slug}', ProductDetail::class)->name('product.detail'
 
 Route::middleware('auth')->group(function() {
     Route::get('cart', Cart::class)->name('cart');
+    Route::get('checkout', Checkout::class)->name('checkout');
 });
 
 require __DIR__.'/auth.php';

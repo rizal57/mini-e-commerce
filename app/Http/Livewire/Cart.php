@@ -68,4 +68,14 @@ class Cart extends Component
         $cart->save();
         $this->cart_id = 0;
     }
+
+    public function beli()
+    {
+        if(empty($this->selected)) {
+            session()->flash('failed', 'Pilih produk yang mau dibeli dulu dong!');
+            return;
+        }
+        session(['cart_id' => $this->selected]);
+        redirect()->to(route('checkout'));
+    }
 }

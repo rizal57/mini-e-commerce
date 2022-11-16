@@ -129,7 +129,7 @@
 
                                 <x-slot name="content">
                                     <!-- Authentication -->
-                                        <x-dropdown-link :href="route('home')">
+                                        <x-dropdown-link :href="route('user.index')">
                                             {{ auth()->user()->name }}
                                         </x-dropdown-link>
                                         <form method="POST" action="{{ route('logout') }}">

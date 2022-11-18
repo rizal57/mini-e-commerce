@@ -8,7 +8,8 @@ use Livewire\Component;
 
 class Cart extends Component
 {
-    public $carts, $total_item_selected, $total_price = 0, $subtotal = 0, $cart, $total_item = 0, $cart_id = 0;
+    public $carts, $total_item_selected, $total_price = 0,
+            $subtotal = 0, $cart, $total_item = 0, $cart_id = 0, $note;
     public $selected = [];
 
     public function render()
@@ -79,5 +80,21 @@ class Cart extends Component
         }
         session(['cart_id' => $this->selected]);
         redirect()->to(route('checkout'));
+    }
+
+    public function showAddNota($id)
+    {
+        $this->cart_id = $id;
+        $cart = ModelsCart::find($this->cart_id);
+        $this->note = $cart->note;
+        $this->total_item = $cart->total_item;
+    }
+
+    public function saveNote($id)
+    {
+        $cart = ModelsCart::find($id);
+        $cart->note = $this->note;
+        $cart->save();
+        $this->cart_id = 0;
     }
 }

@@ -51,7 +51,39 @@
                     </div>
                     <div class="mt-3 flex justify-between items-center">
                         <div>
-                            <a href="#" class="text-teal-500 hover:text-teal-600 transition-all duration-300 text-xs">Tulis Catatan</a>
+                            <div>
+                                @if ($cart_id !== $cart->id)
+                                    <button
+                                        wire:click="showAddNota({{ $cart->id }})"
+                                        class="text-teal-500 hover:text-teal-600 transition-all duration-300 text-xs"
+                                    >
+                                        @if (empty($cart->note))
+                                            Tulis Catatan
+                                        @else
+                                            Edit Catatan
+                                        @endif
+                                    </button>
+                                @else
+                                    <button
+                                        wire:click="saveNote({{ $cart->id }})"
+                                        class="text-sky-500 hover:text-sky-600 transition-all duration-300 text-xs"
+                                    >
+                                        Simpan
+                                    </button>
+                                @endif
+                            </div>
+                            <div>
+                                @if ($cart_id === $cart->id)
+                                <span class="pr-4">
+                                    <textarea
+                                        wire:model="note"
+                                        class="textarea lg:w-60 resize-none border-teal-500 focus:ring-teal-500 focus:border-slate-400 focus:outline-0 rounded-md max-w-full mr-4 lg:h-4 placeholder:text-sm placeholder:text-slate-400 text-sm px-3" placeholder="Tulis catatan...">
+                                    </textarea>
+                                </span>
+                            @else
+                                <span class="px-3 py-1 my-1 text-slate-500 text-sm">{{ $cart->note }}</span>
+                            @endif
+                            </div>
                         </div>
                         <div>
                             <div class="flex items-center gap-14">

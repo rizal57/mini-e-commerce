@@ -2,7 +2,7 @@
     {{-- <div class="container px-4"> --}}
         <div class="lg:px-8 lg:my-4 mx-auto">
             <div class="container px-24 mx-auto py-4 space-y-4">
-                <h1 class="text-slate-700 font-bold text-xl">Checkout</h1>
+                <h1 class="text-slate-700 font-bold text-2xl">Checkout</h1>
                 <h1 class="text-slate-700 font-semibold text-base">Alamat Pengiriman</h1>
 
                 <div class="flex gap-2 justify-between">
@@ -11,6 +11,8 @@
                             <h1 class="text-slate-700 font-semibold text-base">{{ auth()->user()->name }}</h1>
                             <p class="text-slate-600 text-sm">{{ auth()->user()->phone_number }}</p>
                             <p class="text-slate-500 text-base">{{ auth()->user()->address }}</p>
+                            <p class="text-slate-500 text-base inline">{{ $kota['city_name'] }}</p>
+                            <p class="text-slate-500 text-base inline">{{ $provinsi['province'] }}</p>
                         </div>
                         <hr>
                         @foreach ($carts as $cart)
@@ -41,6 +43,15 @@
                             <div class="border-b border-b-slate-300 py-4 mb-4">
                                 <div class="mb-4">
                                     <h1 class="text-slate-700 font-semibold text-lg">Ringkasan Belanja</h1>
+                                </div>
+                                <div class="flex items-center justify-between gap-2 mb-4">
+                                    <label class="text-teal-500 font-semibold text-base">Pilih Kurir</label>
+                                    <select wire:model="courier_id" id="courier_id" class="p-2 px-2 w-40 border border-slate-300 rounded-md ring-slate-500 focus:ring-teal-400 focus:border-slate-200 text-slate-500">
+                                        <option value="">-- Pilih Kurir --</option>
+                                        <option value="jne">JNE</option>
+                                        <option value="tiki">Tiki</option>
+                                        <option value="pos">Pos Indonesia</option>
+                                    </select>
                                 </div>
                                 <div class="flex items-center justify-between gap-4">
                                     <div>

@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Cart extends Component
 {
-    public $carts, $total_item_selected, $total_price = 0,
+    public $carts, $total_item_selected, $total_price = 0, $weight,
             $subtotal = 0, $cart, $total_item = 0, $cart_id = 0, $note;
     public $selected = [];
 
@@ -68,6 +68,7 @@ class Cart extends Component
         $product = Product::where('id', $cart->product_id)->first();
         $cart->total_item = $this->total_item;
         $cart->total_price = $product->price * $this->total_item;
+        $cart->weight = $product->weight * $this->total_item;
         $cart->save();
         $this->cart_id = 0;
     }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('total_item');
             $table->string('courier_id')->nullable();
             $table->integer('total_price');
+            $table->float('weight');
             $table->text('note')->nullable();
             $table->timestamps();
         });

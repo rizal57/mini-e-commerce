@@ -19,6 +19,13 @@ class Checkout extends Controller
         $provinsi = RajaOngkir::provinsi()->find(auth()->user()->provinsi_id);
         $kota = RajaOngkir::kota()->dariProvinsi(auth()->user()->provinsi_id)->find(auth()->user()->kota_id);
 
+        $daftarProvinsi = RajaOngkir::ongkosKirim([
+            'origin'        => 178,     // ID kota/kabupaten asal
+            'destination'   => auth()->user()->kota_id,      // ID kota/kabupaten tujuan
+            'weight'        => 1300,    // berat barang dalam gram
+            'courier'       => 'jne'    // kode kurir pengiriman: ['jne', 'tiki', 'pos'] untuk starter
+        ]);
+
         return view('frontend.checkout', [
             'carts' => $carts,
             'total_item' => $total_item,

@@ -8,7 +8,8 @@ use Livewire\Component;
 
 class Cart extends Component
 {
-    public $carts, $total_item_selected, $total_price = 0, $subtotal = 0, $cart, $total_item = 0, $cart_id = 0;
+    public $carts, $total_item_selected, $total_price = 0, $weight,
+            $subtotal = 0, $cart, $total_item = 0, $cart_id = 0, $note;
     public $selected = [];
 
     public function render()
@@ -67,17 +68,39 @@ class Cart extends Component
         $product = Product::where('id', $cart->product_id)->first();
         $cart->total_item = $this->total_item;
         $cart->total_price = $product->price * $this->total_item;
+        $cart->weight = $product->weight * $this->total_item;
         $cart->save();
         $this->cart_id = 0;
     }
 
     public function beli()
     {
+        if(empty(auth()->user()->address) || empty(auth()->user()->provinsi_id) || empty(auth()->user()->kota_id)) {
+            session()->flash('failed', 'Lengkapi data alamat terlebih dahulu!');
+            return;
+        }
+
         if(empty($this->selected)) {
-            session()->flash('failed', 'Pilih produk yang mau dibeli dulu dong!');
+            session()->flash('failed', 'Pilih produk terlebihdahulu!');
             return;
         }
         session(['cart_id' => $this->selected]);
         redirect()->to(route('checkout'));
+    }
+
+    public function showAddNota($id)
+    {
+        $this->cart_id = $id;
+        $cart = ModelsCart::find($this->cart_id);
+        $this->note = $cart->note;
+        $this->total_item = $cart->total_item;
+    }
+
+    public function saveNote($id)
+    {
+        $cart = ModelsCart::find($id);
+        $cart->note = $this->note;
+        $cart->save();
+        $this->cart_id = 0;
     }
 }

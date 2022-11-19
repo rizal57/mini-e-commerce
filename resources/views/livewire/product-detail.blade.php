@@ -77,15 +77,7 @@
                         </div>
                         <div>
                             <div>Dikirm dari <span class="font-semibold">Kediri</span></div>
-                            <div class="flex items-center justify-between gap-2">
-                                <label class="text-teal-500 font-semibold text-base">Pilih Kurir</label>
-                                <select wire:model="courier_id" id="courier_id" class="p-2 px-2 w-40 border border-slate-300 rounded-md ring-slate-500 focus:ring-teal-400 focus:border-slate-200 text-slate-500">
-                                    <option value="">-- Pilih Kurir --</option>
-                                    <option value="jne">JNE</option>
-                                    <option value="tiki">Tiki</option>
-                                    <option value="pos">Pos Indonesia</option>
-                                </select>
-                            </div>
+
                         </div>
                     </div>
                 </div>

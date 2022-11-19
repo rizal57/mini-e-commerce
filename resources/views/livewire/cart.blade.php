@@ -26,6 +26,11 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 <span>{{ session('failed') }}</span>
             </div>
+            @if (empty(auth()->user()->address) || empty(auth()->user()->provinsi_id) || empty(auth()->user()->kota_id))
+                <div class="flex-none">
+                    <a href="{{ route('user.index') }}" class="btn btn-xs bg-slate-500 hover:bg-slate-700 border-none">Settings</a>
+                </div>
+            @endif
         </div>
     @endif
     <div class="mb-3">
@@ -51,7 +56,39 @@
                     </div>
                     <div class="mt-3 flex justify-between items-center">
                         <div>
-                            <a href="#" class="text-teal-500 hover:text-teal-600 transition-all duration-300 text-xs">Tulis Catatan</a>
+                            <div>
+                                @if ($cart_id !== $cart->id)
+                                    <button
+                                        wire:click="showAddNota({{ $cart->id }})"
+                                        class="text-teal-500 hover:text-teal-600 transition-all duration-300 text-xs"
+                                    >
+                                        @if (empty($cart->note))
+                                            Tulis Catatan
+                                        @else
+                                            Edit Catatan
+                                        @endif
+                                    </button>
+                                @else
+                                    <button
+                                        wire:click="saveNote({{ $cart->id }})"
+                                        class="text-sky-500 hover:text-sky-600 transition-all duration-300 text-xs"
+                                    >
+                                        Simpan
+                                    </button>
+                                @endif
+                            </div>
+                            <div>
+                                @if ($cart_id === $cart->id)
+                                <span class="pr-4">
+                                    <textarea
+                                        wire:model="note"
+                                        class="textarea lg:w-60 resize-none border-teal-500 focus:ring-teal-500 focus:border-slate-400 focus:outline-0 rounded-md max-w-full mr-4 lg:h-4 placeholder:text-sm placeholder:text-slate-400 text-sm px-3" placeholder="Tulis catatan...">
+                                    </textarea>
+                                </span>
+                            @else
+                                <span class="px-3 py-1 my-1 text-slate-500 text-sm">{{ $cart->note }}</span>
+                            @endif
+                            </div>
                         </div>
                         <div>
                             <div class="flex items-center gap-14">

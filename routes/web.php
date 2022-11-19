@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\Checkout;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Cart;
+use App\Http\Livewire\Checkout;
 use App\Http\Livewire\ProductDetail;
 use App\Http\Livewire\Profile;
 use App\Http\Livewire\UserSettings;

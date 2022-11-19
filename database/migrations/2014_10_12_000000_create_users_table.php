@@ -20,6 +20,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->text('address')->nullable();
+            $table->integer('provinsi_id')->nullable();
+            $table->integer('kota_id')->nullable();
             $table->string('phone_number')->nullable();
             $table->enum('level', ['user', 'admin'])->default('user');
             $table->rememberToken();

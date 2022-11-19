@@ -26,6 +26,11 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 <span>{{ session('failed') }}</span>
             </div>
+            @if (empty(auth()->user()->address) || empty(auth()->user()->provinsi_id) || empty(auth()->user()->kota_id))
+                <div class="flex-none">
+                    <a href="{{ route('user.index') }}" class="btn btn-xs bg-slate-500 hover:bg-slate-700 border-none">Settings</a>
+                </div>
+            @endif
         </div>
     @endif
     <div class="mb-3">

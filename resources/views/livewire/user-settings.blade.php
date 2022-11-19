@@ -60,7 +60,7 @@
                         <span class="lg:w-40 inline-block">Nomer HP</span>
                         @if ($id_user === auth()->user()->id)
                             <span class="pr-4">
-                                <input wire:model="phone_number" type="text" class="input lg:w-72 border-teal-500 focus:ring-teal-500 focus:border-slate-400 focus:outline-0 rounded-md w-full">
+                                <input wire:model="phone_number" type="number" class="input lg:w-72 border-teal-500 focus:ring-teal-500 focus:border-slate-400 focus:outline-0 rounded-md w-full">
                             </span>
                         @else
                             <span class="pr-4">{{ auth()->user()->phone_number }}</span>
@@ -90,7 +90,9 @@
                                 </select>
                             </span>
                         @else
-                            <span class="pr-4">{{ $province['province'] }}</span>
+                            @if (!empty(auth()->user()->provinsi_id))
+                                <span class="pr-4">{{ $province['province'] }}</span>
+                            @endif
                         @endif
                     </div>
                     <div class="text-slate-500 flex mb-4">
@@ -110,12 +112,17 @@
                                 </select>
                             </span>
                         @else
-                            <span class="pr-4">{{ $city_name['city_name'] }}</span>
+                            @if (!empty(auth()->user()->kota_id))
+                                <span class="pr-4">{{ $city_name['city_name'] }}</span>
+                            @endif
                         @endif
                     </div>
                     <div class="flex justify-end">
                         @if ($id_user === auth()->user()->id)
-                            <button wire:click="updateUser" class="btn btn-sm bg-teal-500 border-none text-white font-semibold hover:bg-teal-600 rounded-md">Simpan</button>
+                            <button wire:click="updateUser" class="btn btn-sm bg-teal-500 border-none text-white font-semibold hover:bg-teal-600 rounded-md"
+                            >
+                                Simpan
+                            </button>
                         @endif
                     </div>
                 </div>

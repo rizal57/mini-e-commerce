@@ -77,7 +77,7 @@
                         </div>
                         <div>
                             <div>Dikirm dari <span class="font-semibold">Kediri</span></div>
-                            
+
                         </div>
                     </div>
                 </div>

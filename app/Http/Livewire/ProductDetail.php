@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class ProductDetail extends Component
 {
-    public $courier_id, $total_item = 1, $total_price, $weight;
+    public $total_item = 1, $total_price, $weight;
     public $product;
     public function mount($slug) {
         $this->product = Product::where('slug',$slug)->first();
@@ -34,7 +34,6 @@ class ProductDetail extends Component
             if (Cart::where('product_id', $this->product->id)->where('user_id', auth()->user()->id)->exists()) {
                 $cart_update = Cart::where('user_id', auth()->user()->id)->where('product_id', $this->product->id)->first();
                 $cart_update->total_item = $this->total_item;
-                $cart_update->courier_id = $this->courier_id;
                 $cart_update->total_price = $this->total_price;
                 $cart_update->weight = $this->weight;
                 $cart_update->update();
@@ -43,7 +42,6 @@ class ProductDetail extends Component
                 $cart->user_id = auth()->user()->id;
                 $cart->product_id = $this->product->id;
                 $cart->total_item = $this->total_item;
-                $cart->courier_id = $this->courier_id;
                 $cart->total_price = $this->total_price;
                 $cart->weight = $this->weight;
                 $cart->save();

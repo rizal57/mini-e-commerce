@@ -75,8 +75,13 @@ class Cart extends Component
 
     public function beli()
     {
+        if(empty(auth()->user()->address) || empty(auth()->user()->provinsi_id) || empty(auth()->user()->kota_id)) {
+            session()->flash('failed', 'Lengkapi data alamat terlebih dahulu!');
+            return;
+        }
+
         if(empty($this->selected)) {
-            session()->flash('failed', 'Pilih produk yang mau dibeli dulu dong!');
+            session()->flash('failed', 'Pilih produk terlebihdahulu!');
             return;
         }
         session(['cart_id' => $this->selected]);

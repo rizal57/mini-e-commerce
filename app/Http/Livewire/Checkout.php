@@ -11,9 +11,9 @@ class Checkout extends Component
     public $cart_id, $carts, $total_item, $total_price, $total_weight,
             $provinsi, $kota, $courier_id, $nama_jasa, $subtotal = 0;
     public $result = [];
-    // protected $listeners = [
-    //     'changeSubtotal' => '$refresh',
-    // ];
+    protected $listeners = [
+        'getedOngkir' => '$refresh',
+    ];
 
     public function render()
     {
@@ -24,14 +24,14 @@ class Checkout extends Component
         $this->total_price = Cart::whereIn('id', $cart_id)->sum('total_price');
         $this->total_weight = Cart::whereIn('id', $cart_id)->sum('weight');
 
-        $this->provinsi = RajaOngkir::provinsi()->find(auth()->user()->provinsi_id);
-        $this->kota = RajaOngkir::kota()->dariProvinsi(auth()->user()->provinsi_id)->find(auth()->user()->kota_id);
-
         return view('livewire.checkout');
     }
 
     public function getOngkir()
     {
+        $this->provinsi = RajaOngkir::provinsi()->find(auth()->user()->provinsi_id);
+        $this->kota = RajaOngkir::kota()->dariProvinsi(auth()->user()->provinsi_id)->find(auth()->user()->kota_id);
+
         $cost = RajaOngkir::ongkosKirim([
             'origin'        => 178,     // ID kota/kabupaten asal
             'destination'   => auth()->user()->kota_id,      // ID kota/kabupaten tujuan
@@ -47,12 +47,13 @@ class Checkout extends Component
                 'etd' => $row['cost'][0]['etd'],
             ];
         }
+
+        $this->emit('getedOngkir');
     }
 
     public function saveOngkir($biaya)
     {
         $this->subtotal = 0;
         $this->subtotal += $biaya + $this->total_price;
-        // $this->emit('changeSubtotal');
     }
 }

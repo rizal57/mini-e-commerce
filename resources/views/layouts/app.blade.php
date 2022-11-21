@@ -13,6 +13,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
+        <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-QXh7ynOUULEzcTKg"></script>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @stack('style')
     </head>

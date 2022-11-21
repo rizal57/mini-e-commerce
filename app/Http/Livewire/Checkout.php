@@ -9,15 +9,22 @@ use Kavist\RajaOngkir\Facades\RajaOngkir;
 class Checkout extends Component
 {
     public $cart_id, $carts, $total_item, $total_price, $total_weight,
-            $provinsi, $kota, $courier_id, $nama_jasa, $subtotal = 0;
+            $provinsi, $kota, $courier_id, $nama_jasa, $subtotal = 0, $transaction_token, $ongkir = 0;
     public $result = [];
     protected $listeners = [
         'getedOngkir' => '$refresh',
     ];
 
+    public function mount()
+    {
+        $this->provinsi = RajaOngkir::provinsi()->find(auth()->user()->provinsi_id);
+        $this->kota = RajaOngkir::kota()->dariProvinsi(auth()->user()->provinsi_id)->find(auth()->user()->kota_id);
+    }
+
     public function render()
     {
         $cart_id = session('cart_id');
+        $this->cart_id = session('cart_id');
 
         $this->carts = Cart::whereIn('id', $cart_id)->get();
         $this->total_item = Cart::whereIn('id', $cart_id)->sum('total_item');
@@ -29,9 +36,6 @@ class Checkout extends Component
 
     public function getOngkir()
     {
-        $this->provinsi = RajaOngkir::provinsi()->find(auth()->user()->provinsi_id);
-        $this->kota = RajaOngkir::kota()->dariProvinsi(auth()->user()->provinsi_id)->find(auth()->user()->kota_id);
-
         $cost = RajaOngkir::ongkosKirim([
             'origin'        => 178,     // ID kota/kabupaten asal
             'destination'   => auth()->user()->kota_id,      // ID kota/kabupaten tujuan
@@ -53,7 +57,20 @@ class Checkout extends Component
 
     public function saveOngkir($biaya)
     {
+        $this->ongkir = $biaya;
         $this->subtotal = 0;
         $this->subtotal += $biaya + $this->total_price;
+    }
+
+    public function bayar($subtotal)
+    {
+        if($this->ongkir === 0) {
+            session()->flash('failed', 'Pilih kurir terlebih dahulu!');
+            return back();
+        }
+        session(['subtotal' => $subtotal]);
+        session(['cart_id' => $this->cart_id]);
+        session(['ongkir' => $this->ongkir]);
+        redirect()->to(route('payment'));
     }
 }

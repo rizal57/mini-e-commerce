@@ -1,10 +1,5 @@
-<div>
-    @push('style')
-    @livewireStyles
-@endpush
-
-@push('script')
-    @livewireScripts
+<x-app-layout>
+    @push('script')
     <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
     <script type="text/javascript">
         // For example trigger on button clicked, or any time you need
@@ -14,17 +9,14 @@
         window.snap.pay('{{ $transaction_token }}', {
             onSuccess: function(result){
             /* You may add your own implementation here */
-            alert("payment success!"); console.log(result);
             send_response(result);
             },
             onPending: function(result){
             /* You may add your own implementation here */
-            alert("wating your payment!"); console.log(result);
             send_response(result);
             },
             onError: function(result){
             /* You may add your own implementation here */
-            alert("payment failed!"); console.log(result);
             send_response(result);
             },
             onClose: function(){
@@ -42,9 +34,9 @@
 @endpush
 
 <div>
-    <form wire:submit.prevent='submit_response' method="POST" id="submit_form">
+    <form action="" method="POST" id="submit_form">
         @csrf
-        <input type="hidden" wire:model='json' name="json" id="json_callback">
+        <input type="hidden" name="json" id="json_callback">
     </form>
     <div class="lg:px-8 lg:my-4 mx-auto">
         <div class="container px-24 mx-auto py-4 space-y-4">
@@ -118,10 +110,8 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
+</x-app-layout>
 
-</div>

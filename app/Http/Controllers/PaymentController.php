@@ -1,30 +1,25 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use Livewire\Component;
+use Illuminate\Http\Request;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
 
-class Payment extends Component
+class PaymentController extends Controller
 {
-    public $subtotal, $transaction_token, $carts, $total_price, $total_item, $ongkir, $provinsi, $kota, $json;
-
-    public function mount()
+    public function index()
     {
-        $this->provinsi = RajaOngkir::provinsi()->find(auth()->user()->provinsi_id);
-        $this->kota = RajaOngkir::kota()->dariProvinsi(auth()->user()->provinsi_id)->find(auth()->user()->kota_id);
-    }
+        $provinsi = RajaOngkir::provinsi()->find(auth()->user()->provinsi_id);
+        $kota = RajaOngkir::kota()->dariProvinsi(auth()->user()->provinsi_id)->find(auth()->user()->kota_id);
 
-    public function render()
-    {
-        $this->subtotal = session('subtotal');
+        $subtotal = session('subtotal');
         $cart_id = session('cart_id');
-        $this->ongkir = session('ongkir');
+        $ongkir = session('ongkir');
 
-        $this->carts = Cart::whereIn('id', $cart_id)->get();
-        $this->total_item = Cart::whereIn('id', $cart_id)->sum('total_item');
-        $this->total_price = Cart::whereIn('id', $cart_id)->sum('total_price');
+        $carts = Cart::whereIn('id', $cart_id)->get();
+        $total_item = Cart::whereIn('id', $cart_id)->sum('total_item');
+        $total_price = Cart::whereIn('id', $cart_id)->sum('total_price');
 
         // payment start
             // Set your Merchant Server Key
@@ -39,7 +34,7 @@ class Payment extends Component
             $params = array(
                 'transaction_details' => array(
                     'order_id' => rand(),
-                    'gross_amount' => $this->subtotal,
+                    'gross_amount' => $subtotal,
                 ),
                 'customer_details' => array(
                     'first_name' => auth()->user()->name,
@@ -58,13 +53,14 @@ class Payment extends Component
             );
 
             $snapToken = \Midtrans\Snap::getSnapToken($params);
-            $this->transaction_token = $snapToken;
+            $transaction_token = $snapToken;
         // payment end
-        return view('livewire.payment');
+
+        return view('frontend.payments.index', compact(['provinsi', 'kota', 'subtotal', 'ongkir', 'carts', 'total_item', 'total_price', 'transaction_token']));
     }
 
-    public function submit_response()
+    public function payment_post(Request $request)
     {
-        dd($this->json);
+        return $request;
     }
 }

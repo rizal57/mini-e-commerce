@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Cart;
 use App\Http\Livewire\Checkout;
@@ -20,7 +21,8 @@ Route::middleware('auth')->group(function() {
     Route::get('checkout', Checkout::class)->name('checkout');
     Route::get('user/settings', [UserController::class, 'index'])->name('user.index');
 
-    Route::get('payment', Payment::class)->name('payment');
+    Route::get('payment', [PaymentController::class, 'index'])->name('payment');
+    Route::post('payment', [PaymentController::class, 'payment_post'])->name('payment.post');
 });
 
 require __DIR__.'/auth.php';

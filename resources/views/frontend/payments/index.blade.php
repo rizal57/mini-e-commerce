@@ -1,6 +1,6 @@
 <x-app-layout>
     @push('script')
-    <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script> --}}
     <script type="text/javascript">
         // For example trigger on button clicked, or any time you need
         var payButton = document.getElementById('pay-button');
@@ -28,7 +28,8 @@
 
         function send_response(result) {
             document.getElementById('json_callback').value = JSON.stringify(result);
-            $('#submit_form').submit();
+            document.getElementById('submit_form').submit();
+            // $('#submit_form').submit();
         }
     </script>
 @endpush

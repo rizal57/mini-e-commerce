@@ -18,6 +18,12 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->integer('total_item');
             $table->integer('subtotal');
+            $table->string('transaction_id');
+            $table->string('order_id');
+            $table->string('payment_type');
+            $table->string('payment_code');
+            $table->string('pdf_url');
+            $table->string('transaction_status');
             $table->timestamps();
         });
     }

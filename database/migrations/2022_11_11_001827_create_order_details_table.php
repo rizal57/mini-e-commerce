@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('purchase_id');
+            $table->foreignId('order_id');
             $table->foreignId('product_id');
-            $table->integer('purchase_price');
-            $table->integer('amount');
+            $table->integer('total_item');
+            $table->string('courier_id')->nullable();
             $table->integer('total_price');
+            $table->float('weight');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

@@ -71,6 +71,7 @@ class Checkout extends Component
         session(['subtotal' => $subtotal]);
         session(['cart_id' => $this->cart_id]);
         session(['ongkir' => $this->ongkir]);
+        session(['total_item' => $this->total_item]);
         redirect()->to(route('payment'));
     }
 }

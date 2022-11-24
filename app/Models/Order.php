@@ -12,6 +12,12 @@ class Order extends Model
         'user_id',
         'total_item',
         'subtotal',
+        'transaction_id',
+        'order_id',
+        'payment_type',
+        'payment_code',
+        'pdf_url',
+        'transaction_status',
     ];
 
     public function detailPurchase() {

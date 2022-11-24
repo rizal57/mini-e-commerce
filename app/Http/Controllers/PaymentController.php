@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\OrderDetail;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Kavist\RajaOngkir\Facades\RajaOngkir;
 
@@ -61,6 +64,45 @@ class PaymentController extends Controller
 
     public function payment_post(Request $request)
     {
-        return $request;
+        $total_item = session('total_item');
+
+        $json = json_decode($request->get('json'));
+        $order = new Order();
+        $order->user_id = auth()->user()->id;
+        $order->total_item = $total_item;
+        $order->subtotal = $json->gross_amount;
+        $order->transaction_id = $json->transaction_id;
+        $order->order_id = $json->order_id;
+        $order->payment_type = $json->payment_type;
+        $order->payment_code = $json->payment_code ?? "";
+        $order->pdf_url = $json->pdf_url ?? "";
+        $order->transaction_status = $json->transaction_status;
+        $order->save();
+
+        $newOrder = Order::where('transaction_status', 'pending')->latest()->first();
+
+        if(empty($newOrder)) {
+            $order_id = $order->id;
+        } elseif(!empty($newOrder)) {
+            $order_id = $newOrder->id;
+        }
+
+        $cart_id = session('cart_id');
+        $carts = Cart::whereIn('id', $cart_id)->get();
+        foreach($carts as $cart) {
+            $detail = new OrderDetail();
+            $detail->order_id = $order_id;
+            $detail->product_id = $cart->product_id;
+            $detail->total_item = $cart->total_item;
+            $detail->courier_id = $cart->courier_id;
+            $detail->total_price = $cart->total_price;
+            $detail->weight = $cart->weight;
+            $detail->note = $cart->note;
+            $detail->save();
+
+            $cart->delete();
+        }
+
+        return redirect(route('home'))->with('success', 'Order berhasil dibuat');
     }
 }

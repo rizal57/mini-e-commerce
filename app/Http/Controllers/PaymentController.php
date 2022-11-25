@@ -79,7 +79,7 @@ class PaymentController extends Controller
         $order->transaction_status = $json->transaction_status;
         $order->save();
 
-        $newOrder = Order::where('transaction_status', 'pending')->latest()->first();
+        $newOrder = Order::where('id', $order->id)->latest()->first();
 
         if(empty($newOrder)) {
             $order_id = $order->id;

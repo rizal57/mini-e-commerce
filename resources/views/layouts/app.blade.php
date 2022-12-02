@@ -18,7 +18,7 @@
         @stack('style')
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-white">
+        <div class="min-h-screen bg-white pt-32">
             <livewire:navbar />
 
             <!-- Page Heading -->

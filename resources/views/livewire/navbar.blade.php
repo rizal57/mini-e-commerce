@@ -1,5 +1,5 @@
 <div>
-    <header class="">
+    <header class="fixed top-0 z-50 w-full left-0">
         <div class="bg-slate-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
                 <div class="flex items-center justify-between">
@@ -235,7 +235,7 @@
         </nav>
     </header>
     @push('script')
-        <script>
+        {{-- <script>
             window.onscroll = function() {
                 const header = document.querySelector('header');
                 const navFix = header.offsetTop;
@@ -253,6 +253,6 @@
                     header.classList.remove('left-0');
                 }
             }
-        </script>
+        </script> --}}
     @endpush
 </div>

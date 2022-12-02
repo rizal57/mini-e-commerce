@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
     @endpush
     <div>
-        <div id="carousel" class="owl-carousel owl-theme rounded-lg overflow-hidden">
+        <div id="carousel" class="owl-carousel owl-theme rounded-lg overflow-hidden mb-4">
             <div id="slide1" class="carousel-item relative w-full h-40 lg:h-[370px] bg-cover">
                 <img src="{{ asset('images/banner4.jpg') }}" class="w-full object-cover" />
             </div>

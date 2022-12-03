@@ -26,7 +26,7 @@ class PaymentController extends Controller
 
         // payment start
             // Set your Merchant Server Key
-            \Midtrans\Config::$serverKey = 'SB-Mid-server-eZCV-FiklxVf403HnmTAhFp8';
+            \Midtrans\Config::$serverKey = env('MIDTRANS_SERVER_KEY');
             // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
             \Midtrans\Config::$isProduction = false;
             // Set sanitization on (default)

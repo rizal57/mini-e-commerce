@@ -57,16 +57,12 @@
                             <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                                 {{ __('Home') }}
                             </x-nav-link>
+                            <x-nav-link :href="route('all.products')" :active="request()->routeIs('all.products')">
+                                {{ __('All Products') }}
+                            </x-nav-link>
                         </div>
                     </div>
 
-                    {{-- searh start --}}
-                    <div class="lg:w-full lg:mx-8">
-                        <div class="form-control">
-                            <input type="text" placeholder="Search products..." class="py-1 px-2 rounded-lg bg-white border-slate-300 placeholder:text-slate-300 focus:ring-blue-300 focus:border-slate-300 transition duration-300" />
-                        </div>
-                    </div>
-                    {{-- searh end --}}
                     <!-- Settings Dropdown -->
                     <div class="hidden sm:flex sm:items-center sm:ml-6 lg:gap-4">
                         @auth
